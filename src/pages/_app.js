@@ -1,56 +1,50 @@
 import "@/styles/globals.css";
-import Menu from "@/components/Menu";
-import Navbar from "@/components/Navbar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Sidebar from "@/components/sidebar";
+import { usePathname } from "next/navigation";
 import Head from "next/head";
-import { projects } from "../components/IndexENG";
-import { projects2 } from "../components/IndexESP";
 
 const App = ({ Component, pageProps, router }) => {
-  const [toggle, setToggle] = useState(false);
-  const [active, setActive] = useState("home");
-  const [theme, setTheme] = useState(false);
+  const [sidebarActive, setSidebarActive] = useState(true);
+  const [firstName, setFirstName] = useState("User");
+  const [lastName, setLastName] = useState("Name");
+  const [avatar, setAvatar] = useState("avatar1");
+  const [theme, setTheme] = useState(true);
   const [language, setLanguage] = useState(true);
-  const [itemsModal, setItemsModal] = useState(projects);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (pathname === "/") {
+      setSidebarActive(true);
+    } else if (pathname != "/") {
+      setSidebarActive(false);
+    }
+  }, [pathname]);
 
   return (
-    <div>
-      <Menu
-        toggle={toggle}
-        setToggle={setToggle}
-        active={active}
-        setActive={setActive}
-        theme={theme}
-        setTheme={setTheme}
-        language={language}
-        setLanguage={setLanguage}
-      />
-      
-        <Navbar
-          toggle={toggle}
-          setToggle={setToggle}
-          active={active}
-          setActive={setActive}
+    <div className="w-full">
+      <Head>
+        <title>GleamAI</title>
+      </Head>
+      {/* SIDEBAR--------------------------------------------------------------------- */}
+      {sidebarActive ? null : <Sidebar language={language} />}
+      {/* PAGES--------------------------------------------------------------------- */}
+      <div className={sidebarActive ? "" : "lg:pl-[280px]"}>
+        <Component
+          key={router.pathname}
+          {...pageProps}
+          firstName={firstName}
+          setFirstName={setFirstName}
+          lastName={lastName}
+          setLastName={setLastName}
+          avatar={avatar}
+          setAvatar={setAvatar}
           theme={theme}
           setTheme={setTheme}
           language={language}
           setLanguage={setLanguage}
         />
-      
-      <Component
-        key={router.pathname}
-        {...pageProps}
-        toggle={toggle}
-        setToggle={setToggle}
-        active={active}
-        setActive={setActive}
-        theme={theme}
-        setTheme={setTheme}
-        language={language}
-        setLanguage={setLanguage}
-        itemsModal={itemsModal}
-        setItemsModal={setItemsModal}
-      />
+      </div>
     </div>
   );
 };
