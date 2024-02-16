@@ -1,4 +1,11 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Alt text](https://i.imgur.com/Im7tiYC.jpeg)
+![Alt text](https://i.imgur.com/F0CUtJ0.jpeg)
+![Alt text](https://i.imgur.com/l8iVTxD.png)
+![Alt text](https://i.imgur.com/Fkxt8Uq.png)
+![Alt text](https://i.imgur.com/GrtOksY.png)
+![Alt text](https://i.imgur.com/eJQnHKz.png)
+![Alt text](https://i.imgur.com/q5tqPTq.png)
+![Alt text](https://i.imgur.com/WrhRWq5.png)
 
 ## Getting Started
 
